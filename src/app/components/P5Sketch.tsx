@@ -1,6 +1,7 @@
 // src/app/components/P5Sketch.tsx
 
 import React, { useEffect, useRef } from 'react';
+import * as p5 from "p5";
 
 const P5Sketch: React.FC = () => {
   const sketchRef = useRef<HTMLDivElement>(null);
