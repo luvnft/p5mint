@@ -1,7 +1,5 @@
-// src/app/components/P5Sketch.tsx
-
 import React, { useEffect, useRef } from 'react';
-import * as p5 from "p5";
+import * as p5 from 'p5';
 
 const P5Sketch: React.FC = () => {
   const sketchRef = useRef<HTMLDivElement>(null);
@@ -32,11 +30,11 @@ const P5Sketch: React.FC = () => {
 
         p.preload = () => {
           song = p.loadSound('/UnderPressure.mp3', () => {
-            console.log("Song loaded");
+            console.log('Song loaded');
           });
           song.onended(() => {
             playing = false;
-            document.getElementById("audioToggleButton")!.innerText = "PLAY";
+            document.getElementById('audioToggleButton')!.innerText = 'PLAY';
             a = 0;
           });
         };
@@ -45,7 +43,7 @@ const P5Sketch: React.FC = () => {
           p.createCanvas(500, 500);
           layer = p.createGraphics(p.width, p.height);
           p.background('black');
-          fft = new p5.FFT(0, 256);
+          fft = new p.FFT(0, 256); // Use p instead of p5
           a = 360 / (song.duration() * fr);
           b = a;
           p.frameRate(fr);
@@ -99,10 +97,10 @@ const P5Sketch: React.FC = () => {
         (window as any).toggleAudio = () => {
           if (!playing) {
             song.play();
-            document.getElementById("audioToggleButton")!.innerText = "PAUSE";
+            document.getElementById('audioToggleButton')!.innerText = 'PAUSE';
           } else {
             song.pause();
-            document.getElementById("audioToggleButton")!.innerText = "PLAY";
+            document.getElementById('audioToggleButton')!.innerText = 'PLAY';
           }
           playing = !playing;
         };
@@ -121,7 +119,9 @@ const P5Sketch: React.FC = () => {
   return (
     <div>
       <div ref={sketchRef}></div>
-      <button id="audioToggleButton" onClick={() => (window as any).toggleAudio()}>PLAY</button>
+      <button id="audioToggleButton" onClick={() => (window as any).toggleAudio()}>
+        PLAY
+      </button>
     </div>
   );
 };
